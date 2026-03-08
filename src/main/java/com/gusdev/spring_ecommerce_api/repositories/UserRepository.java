@@ -3,6 +3,7 @@ package com.gusdev.spring_ecommerce_api.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gusdev.spring_ecommerce_api.entities.User;
+import org.springframework.stereotype.Repository;
 
 /**
  * Interface responsável pela camada de acesso a dados (Data Access Layer) da
@@ -14,6 +15,7 @@ import com.gusdev.spring_ecommerce_api.entities.User;
  * 
  * O Spring Data JPA gera a implementação dessa interface em tempo de execução.
  */
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	/**
