@@ -3,7 +3,6 @@ package com.gusdev.spring_ecommerce_api.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gusdev.spring_ecommerce_api.entities.enums.OrderStatus;
 import jakarta.persistence.*;
-import org.springframework.stereotype.Service;
 
 import java.io.Serial;
 import java.io.Serializable;

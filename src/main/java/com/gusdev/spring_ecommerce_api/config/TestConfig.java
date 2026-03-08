@@ -3,8 +3,10 @@ package com.gusdev.spring_ecommerce_api.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import com.gusdev.spring_ecommerce_api.entities.Category;
 import com.gusdev.spring_ecommerce_api.entities.Order;
 import com.gusdev.spring_ecommerce_api.entities.enums.OrderStatus;
+import com.gusdev.spring_ecommerce_api.repositories.CategoryRepository;
 import com.gusdev.spring_ecommerce_api.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -36,6 +38,8 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private OrderRepository orderRepository;
 
+	@Autowired
+	private CategoryRepository categoryRepository;
 	/**
 	 * Método executado automaticamente após o contexto da aplicação Spring ser
 	 * completamente inicializado.
@@ -63,5 +67,11 @@ public class TestConfig implements CommandLineRunner {
 		// Persiste todos os pedidos no banco em uma única operação
 		// saveAll() salva todos os objetos presentes na coleção informada
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+		Category cat1 = new Category(null, "Electronics");
+		Category cat2 = new Category(null, "Books");
+		Category cat3 = new Category(null, "Computers");
+
+		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 	}
 }
