@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.gusdev.spring_ecommerce_api.entities.User;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 /**
  * Classe responsável por expor os endpoints REST relacionados à entidade "User".
@@ -45,5 +48,12 @@ public class UserResource {
 	public ResponseEntity<User> findById(@PathVariable Long id) {
 		User obj = userService.findById(id);
 		return ResponseEntity.ok().body(obj);
+	}
+
+	@PostMapping
+	public ResponseEntity<User> insert(@RequestBody User obj) {
+		obj = userService.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).body(obj);
 	}
 }

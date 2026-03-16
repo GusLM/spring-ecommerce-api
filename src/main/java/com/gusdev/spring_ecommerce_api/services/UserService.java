@@ -30,4 +30,8 @@ public class UserService {
             throw new NoSuchElementException();
         }
     }
+
+    public User insert(User obj) {
+        return userRepository.save(obj);
+    }
 }
