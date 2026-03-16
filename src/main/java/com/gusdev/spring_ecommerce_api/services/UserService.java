@@ -2,6 +2,7 @@ package com.gusdev.spring_ecommerce_api.services;
 
 import com.gusdev.spring_ecommerce_api.entities.User;
 import com.gusdev.spring_ecommerce_api.repositories.UserRepository;
+import com.gusdev.spring_ecommerce_api.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,11 +25,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> obj = userRepository.findById(id);
-        if (obj.isPresent()){
-            return obj.get();
-        } else {
-            throw new NoSuchElementException();
-        }
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj) {
