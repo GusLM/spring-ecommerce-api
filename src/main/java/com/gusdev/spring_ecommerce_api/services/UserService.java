@@ -42,10 +42,12 @@ public class UserService {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
-
     }
 
     public User update(Long id, User obj) {
+        if (!userRepository.existsById(id)) {
+            throw new ResourceNotFoundException(id);
+        }
         User entity = userRepository.getReferenceById(id);
         updateData(entity, obj);
         return userRepository.save(entity);
